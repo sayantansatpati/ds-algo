@@ -6,7 +6,7 @@ public class TreeNode<T> {
 	private TreeNode<T> left;
 	private TreeNode<T> right;
 
-	TreeNode(T key) {
+	public TreeNode(T key) {
 		this.data = key;
 	}
 
