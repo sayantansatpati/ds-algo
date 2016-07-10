@@ -19,6 +19,20 @@ public class LinkedList {
 		}
 	}
 
+	public void addArrayToList(int[] data) {
+		Node current = head;
+		for(int i=0; i < data.length; i++) {
+			Node node = new Node(data[i]);
+			if(current == null) {
+				head = node;
+				current = node;
+			} else {
+				current.next = node;
+				current = current.next;
+			}
+		}
+	}
+
 	// head -> 1 -> 2 -> 3 -> null
 	public void reverseList() {
 		Node prev = head;
@@ -35,6 +49,21 @@ public class LinkedList {
 		}
 		//Would point to last element
 		head = prev;
+	}
+
+	public Node getMiddleNode() {
+		if(head.next == null) {
+			return head;
+		}
+		Node slow = head;
+		Node fast = head.next;
+		System.out.println(String.format("SLOW: %d, FAST: %d", slow.iData, fast.iData));
+		while(fast!= null && fast.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+			System.out.println(String.format("SLOW: %d, FAST: %s", slow.iData, fast!=null?String.valueOf(fast.iData):"NULL"));
+		}
+		return slow;
 	}
 
 
@@ -54,9 +83,9 @@ public class LinkedList {
 		System.out.println(sb.toString());
 	}
 
-	static class Node {
-		int iData;
-		Node next;
+	public static class Node {
+		public int iData;
+		public Node next;
 
 		public Node(int data) {
 			this.iData = data;
