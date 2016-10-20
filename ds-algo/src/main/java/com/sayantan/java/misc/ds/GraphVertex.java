@@ -27,6 +27,15 @@ public class GraphVertex<T> {
 		return adjList;
 	}
 
+	public GraphVertex<T> getUnvisitedNeighbor() {
+		for(int i=0; i <= nVertices; i++) {
+			if(!adjList[i].visited) {
+				return adjList[i];
+			}
+		}
+		return null;
+	}
+
 	public void setVisited() {
 		this.visited = true;
 	}

@@ -30,10 +30,10 @@ public class MergeKSortedLinkedLists {
                 } else {
                 	Node node = new Node(c1.iData);
                     c3.next = node;
+                    c3 = c3.next;
                 }
                 //Increment Pointers
                 c1 = c1.next;
-                c3 = c3.next;
             } else {
             	if(c3 == null) {
                     l.insertFirst(c2.iData);
@@ -41,10 +41,10 @@ public class MergeKSortedLinkedLists {
                 } else {
                 	Node node = new Node(c2.iData);
                     c3.next = node;
+                    c3 = c3.next;
                 }
                 //Increment Pointers
                 c2 = c2.next;
-                c3 = c3.next;
             }
         	l.displayList();
         }
@@ -85,7 +85,6 @@ public class MergeKSortedLinkedLists {
 
 		l1.displayList();
 		l2.displayList();
-		System.out.println("###");
 
 		//merge(l1,l2);
 
@@ -97,6 +96,8 @@ public class MergeKSortedLinkedLists {
 		LinkedList l4 = new LinkedList();
 		l4.addArrayToList(a1);
 		l4.displayList();
+
+		System.out.println("###");
 
 		LinkedList[] kLists = {l1,l2,l3,l4};
 		LinkedList l = null;

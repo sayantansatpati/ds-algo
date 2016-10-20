@@ -295,7 +295,10 @@ public class QuickSort {
 
 	public static void main(String[] args) throws Exception {
 		int[] ARR = {3,8,2,5,1,4,7,6};
-		//partition1(ARR);
+		int[] ARR_1 = {6,2,8,4,9,1};
+		partition1(ARR_1);
+
+		System.exit(1);
 
 		int[] ARR1 = {3,8,2,5,1,4,7,6};
 		System.out.println("========");

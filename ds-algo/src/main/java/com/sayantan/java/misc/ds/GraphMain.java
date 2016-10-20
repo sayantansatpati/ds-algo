@@ -1,6 +1,7 @@
 package com.sayantan.java.misc.ds;
 
 import java.util.Queue;
+import java.util.Stack;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class GraphMain {
@@ -29,6 +30,37 @@ public class GraphMain {
 				System.out.println(String.format("### %s --> %s", root.data, vertex!=null?vertex.data:null));
 				dfs(vertex);
 			}
+		}
+	}
+
+	public static void dfs_stack(GraphVertex<String> root) {
+		if(root == null) {
+			return;
+		}
+
+		Stack<GraphVertex<String>> s = new Stack<GraphVertex<String>>();
+
+		s.add(root);
+		//Visit Node
+		root.displayNode();
+		//Mark node as visited
+		root.setVisited();
+
+		while(!s.isEmpty()) {
+			GraphVertex<String> vertex = s.peek();
+
+			GraphVertex<String> neighbor = vertex.getUnvisitedNeighbor();
+			if(neighbor != null) {
+				//Visit Node
+				neighbor.displayNode();
+				//Mark node as visited
+				neighbor.setVisited();
+				//Add to stack
+				s.push(neighbor);
+			} else {
+				s.pop();
+			}
+
 		}
 	}
 
@@ -79,14 +111,19 @@ public class GraphMain {
 		GraphVertex<String> c = new GraphVertex<String>("C");
 		GraphVertex<String> d = new GraphVertex<String>("D");
 		GraphVertex<String> e = new GraphVertex<String>("E");
+		GraphVertex<String> f = new GraphVertex<String>("F");
 
 		a.addNeighbor(b);
 		a.addNeighbor(d);
 		b.addNeighbor(c);
+		c.addNeighbor(f);
 		d.addNeighbor(e);
 
 		System.out.println("### DFS ###");
 		dfs(a);
+		unsetVisited(a);
+		System.out.println("### DFS Using Stack ###");
+		dfs_stack(a);
 		unsetVisited(a);
 
 		System.out.println("\n### BFS ###");

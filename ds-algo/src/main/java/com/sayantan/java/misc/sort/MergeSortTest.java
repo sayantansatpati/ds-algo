@@ -68,6 +68,59 @@ public class MergeSortTest {
 		System.out.println(Arrays.toString(a3));
 	}
 
+	public static void mergeWithExtraSpace() {
+		System.out.println("\n Merge with Space ---");
+		int[] a1 = new int[]{2,7,9,13,20,25,32,-1,-1,-1,-1};
+		int[] a2 = new int[]{1,9,11,12};
+
+		int[] big = a1.length > a2.length ? a1 : a2;
+		int[] small = a1.length < a2.length ? a1 : a2;
+
+		//Length of bigger array
+		int i = big.length - 1;
+
+		// Last index of bigger array
+		int j = 0;
+		for(j=0; j < i; j++) {
+			if(big[j] == -1) {
+				break;
+			}
+		}
+		j--;
+
+		// Last index of smaller array
+		int k = small.length - 1;
+
+		System.out.println(String.format("[%d][%d][%d]", i, j, k));
+
+		while(j >= 0 && k >= 0) {
+			if(big[j] > small[k]) {
+				big[i--] = big[j--];
+			} else if(big[j] < small[k]) {
+				big[i--] = small[k--];
+			} else {
+				big[i--] = big[j--];
+				big[i--] = small[k--];
+			}
+			/*
+			System.out.println(String.format("[%d][%d][%d]", i, j, k));
+			System.out.println("# " + Arrays.toString(a1));
+			System.out.println("# " + Arrays.toString(a2));
+			System.out.println("# " + Arrays.toString(big) + "\n");
+			*/
+		}
+
+		while(j >= 0) {
+			big[i--] = big[j--];
+		}
+		while(k >= 0) {
+			big[i--] = small[k--];
+		}
+
+		System.out.println(Arrays.toString(big));
+
+	}
+
 	public static void mergeSort(int[] a1, int[] a2) {
 
 	}
@@ -75,6 +128,7 @@ public class MergeSortTest {
 
 	public static void main(String[] args) {
 		merge2(a1, a2);
+		mergeWithExtraSpace();
 	}
 
 }
